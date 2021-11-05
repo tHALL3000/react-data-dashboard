@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
 
 class Chart extends Component {
-	constructor(props) {
+	constructor({ chartData }, props) {
 		super(
 			props
 		);
@@ -20,12 +20,9 @@ class Chart extends Component {
 					datasets: [
 						{
 							label: "Bytes Distribution",
-							data: [
-								2044,
-								1980,
-								3489,
-								4400,
-							],
+							data: {
+								chartData,
+							},
 							backgroundColor: [
 								"rgba(214, 149, 239, 0.7)",
 								"rgba(255, 124, 216, 0.7)",

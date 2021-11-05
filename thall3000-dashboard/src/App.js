@@ -1,5 +1,6 @@
 import "./App.css";
 import Chart from "./components/Chart";
+import Api from "./components/Api";
 import { Component } from "react";
 
 class App extends Component {
@@ -16,10 +17,18 @@ class App extends Component {
 	}
 
 	getChartData() {
-		//api call here
-		this.setState(
-			{
-				//	chartData,
+		Api.getChartDataApi().then(
+			(
+				jsonStr
+			) => {
+				this.setState(
+					{
+						chartData: jsonStr,
+					}
+				);
+				console.log(
+					jsonStr
+				);
 			}
 		);
 	}
@@ -29,13 +38,14 @@ class App extends Component {
 			<div className="App">
 				<header className="App-header">
 					<h1>
-						{/* {" "} */}
 						Sample
 						Web
 						Logs
 					</h1>
 				</header>
-				<Chart />
+				<App>
+					<Chart />
+				</App>
 			</div>
 		);
 	}
