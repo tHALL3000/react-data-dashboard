@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Bar, Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 class Chart extends Component {
 	constructor(props) {
@@ -19,7 +19,7 @@ class Chart extends Component {
 					],
 					datasets: [
 						{
-							labels: "Bytes Distribution",
+							label: "Bytes Distribution",
 							data: [
 								2044,
 								1980,
@@ -38,6 +38,13 @@ class Chart extends Component {
 				},
 			};
 	}
+
+	static defaultProps = {
+		displayTitle: true,
+		displayLegend: true,
+		legendPosition: "right",
+	};
+
 	render() {
 		return (
 			<div className="chart">
@@ -48,7 +55,21 @@ class Chart extends Component {
 							.chartData
 					}
 					options={{
-						maintainAspectRatio: false,
+						title: {
+							display: this
+								.props
+								.displayTitle,
+							text: "This is the title for the graph",
+							fontSize: 25,
+						},
+						legend: {
+							display: this
+								.props
+								.displayLegend,
+							position: this
+								.props
+								.legendPosition,
+						},
 					}}
 				/>
 			</div>
