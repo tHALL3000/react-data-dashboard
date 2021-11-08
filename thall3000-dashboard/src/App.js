@@ -1,11 +1,13 @@
 import "./App.css";
 import Chart from "./components/Chart";
-//import Api from "./components/Api";
 import { Component } from "react";
+import axios from "axios";
 
 class App extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(
+			props
+		);
 		this.state =
 			{
 				chartData: {},
@@ -13,24 +15,30 @@ class App extends Component {
 	}
 
 	componentDidMount() {
+		console.log(
+			this
+				.getChartData
+		);
 		this.getChartData();
 	}
 
 	getChartData() {
-		//Api.getChartDataApi().then(
-		// (
-		// 	jsonStr
-		// ) => {
+		axios.get(
+			"https://jsonplaceholder.typicode.com/todos/1"
+		).then(
+			(
+				response
+			) =>
+				console.log(
+					response
+				)
+		);
+
 		this.setState(
 			{
-				//chartData:
+				//	chartData,
 			}
 		);
-		// 		console.log(
-		// 			jsonStr
-		// 		);
-		// 	}
-		// );
 	}
 
 	render() {
@@ -38,14 +46,13 @@ class App extends Component {
 			<div className="App">
 				<header className="App-header">
 					<h1>
+						{/* {" "} */}
 						Sample
 						Web
 						Logs
 					</h1>
 				</header>
-				<App>
-					<Chart />
-				</App>
+				<Chart />
 			</div>
 		);
 	}
