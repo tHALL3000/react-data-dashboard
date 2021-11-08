@@ -23,15 +23,28 @@ class App extends Component {
 	}
 
 	getChartData() {
+		let highTemp =
+			[];
+		let lowTemp =
+			[];
 		axios.get(
-			"https://jsonplaceholder.typicode.com/todos/1"
+			"http://api.weatherapi.com/v1/forecast.json?key=6e042cb5abbb459d843173749210811&q=London&days=7&aqi=no&alerts=no"
 		).then(
 			(
-				response
-			) =>
+				res
+			) => {
 				console.log(
-					response
-				)
+					res
+				);
+				for (const dataObj = res.data.forcast.forcastday.day) {
+					highTemp.push(
+						dataObj.maxtemp_f
+					);
+					lowTemp.push(
+						dataObj.mintemp_f
+					);
+				}
+			}
 		);
 
 		this.setState(
